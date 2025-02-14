@@ -7,7 +7,7 @@ pipeline {
                 sh  '''ls -la'''
 
                 // Сборка образа 
-                sh  '''docker build -t "mywork" --secret id=myssh,src=id_rsa .'''
+                sh  '''docker build -t mywork --secret id=myssh,src=id_rsa .'''
                    
             }
         }
