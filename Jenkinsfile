@@ -1,21 +1,20 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                //Сборка имеджа
-                sh '''docker build -t "mywork" --secret id=myssh,src=id_rsa . ''' 
-            }
-        }
-        stage('Test') { 
-            steps {
-                // 
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                // 
+                // Сборка образа
+                sh '''docker build -t "mywork" --secret id=myssh,src=id_rsa .'''
             }
         }
     }
+    post {
+        success {
+            echo 'Сборка завершена успешно!'
+        }
+        failure {
+            echo 'Сборка завершилась с ошибкой.'
+        }
+    }
 }
+
